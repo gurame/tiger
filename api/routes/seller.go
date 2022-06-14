@@ -6,6 +6,9 @@ import (
 )
 
 func SellerRoute(app fiber.Router) {
+	app.Get("/sellers", handlers.List())
+	app.Get("/sellers/:id", handlers.Get())
 	app.Post("/sellers", handlers.Add())
-	app.Get("/sellers", handlers.Get())
+	app.Put("/sellers/:id", handlers.Update())
+	app.Delete("/sellers/:id", handlers.Delete())
 }
