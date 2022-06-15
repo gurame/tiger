@@ -5,7 +5,7 @@ import (
 	"github.com/gurame/tiger/core/sellers/handlers"
 )
 
-func SellerRoute(app fiber.Router) {
+func ConfigureSeller(app fiber.Router) {
 	app.Get("/sellers", handlers.List())
 	app.Get("/sellers/:id", handlers.Get())
 	app.Post("/sellers", handlers.Add())

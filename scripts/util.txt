@@ -1,0 +1,13 @@
+docker run --name tiger.db -p 5432:5432 -e POSTGRES_DB=TigerDb -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -d postgres
+
+CREATE TABLE Seller ( 
+    SellerId char(36) NOT NULL,
+    TaxId varchar(50) NOT NULL,
+    Name varchar(100) NULL,   
+    Created timestamp NOT NULL,
+    CreatedBy varchar(100) NOT NULL,
+    LastModified timestamp NULL,
+    LastModifiedBy varchar(100) NULL,
+    BaseEntityState int NOT NULL,
+    CONSTRAINT PK_Seller PRIMARY KEY (SellerId)
+)
