@@ -6,7 +6,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
-	"github.com/gurame/tiger/app/infrastructure/db"
+	dbcontext "github.com/gurame/tiger/app/infrastructure/db/models"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 )
 
@@ -54,7 +54,7 @@ func Add() fiber.Handler {
 			return c.Status(fiber.StatusBadRequest).JSON(errors)
 		}
 
-		s := &db.Seller{Sellerid: uuid.NewString(), Name: r.Name, Taxid: r.TaxId}
+		s := &dbcontext.Seller{Sellerid: uuid.NewString(), Name: r.Name, Taxid: r.TaxId}
 
 		s.InsertG(context.Background(), boil.Infer())
 
