@@ -1,9 +1,7 @@
 package main
 
-import (
-	"github.com/gurame/app/api/server"
-)
+import "github.com/gurame/tiger/app/api"
 
 func main() {
-	server.Run()
+	api.Run()
 }

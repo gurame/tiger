@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/gurame/tiger/core/sellers/handlers"
+	"github.com/gurame/tiger/app/core/sellers/handlers"
 )
 
 func ConfigureSeller(app fiber.Router) {

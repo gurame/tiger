@@ -1,4 +1,4 @@
-package server
+package api
 
 import (
 	"database/sql"
@@ -7,12 +7,13 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gurame/tiger/app/api/routes"
+	_ "github.com/lib/pq"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 )
 
 func Run() {
 
-	db, err := sql.Open("postgres", "dbname=tigerdb user=admin pass=admin sslmode=disable")
+	db, err := sql.Open("postgres", "dbname=TigerDb user=admin password=admin sslmode=disable")
 	if err != nil {
 		log.Fatal("Database Connection Error $s", err)
 	}
