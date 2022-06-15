@@ -11,3 +11,4 @@ output= "app/infrastructure/db"
   user    = "admin"
   pass    = "admin"
   sslmode = "disable"
+  blacklist = ["postgres"]

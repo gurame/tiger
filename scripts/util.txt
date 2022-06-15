@@ -3,7 +3,7 @@ docker run --name tiger.db -p 5432:5432 -e POSTGRES_DB=TigerDb -e POSTGRES_USER=
 CREATE TABLE Seller ( 
     SellerId char(36) NOT NULL,
     TaxId varchar(50) NOT NULL,
-    Name varchar(100) NULL,   
+    Name varchar(100) NOT NULL,   
     Created timestamp NOT NULL,
     CreatedBy varchar(100) NOT NULL,
     LastModified timestamp NULL,

@@ -15,6 +15,10 @@ require (
 	github.com/Masterminds/sprig/v3 v3.2.2 // indirect
 	github.com/andybalholm/brotli v1.0.4 // indirect
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
+	github.com/go-playground/locales v0.14.0 // indirect
+	github.com/go-playground/universal-translator v0.18.0 // indirect
+	github.com/go-playground/validator v9.31.0+incompatible // indirect
+	github.com/go-playground/validator/v10 v10.11.0 // indirect
 	github.com/gofiber/fiber/v2 v2.34.1 // indirect
 	github.com/gofrs/uuid v3.2.0+incompatible // indirect
 	github.com/google/uuid v1.3.0 // indirect
@@ -23,6 +27,7 @@ require (
 	github.com/imdario/mergo v0.3.11 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/klauspost/compress v1.15.0 // indirect
+	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/lib/pq v1.2.1-0.20191011153232-f91d3411e481 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mitchellh/copystructure v1.0.0 // indirect

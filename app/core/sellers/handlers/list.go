@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"context"
-	"fmt"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -16,7 +15,6 @@ func List() fiber.Handler {
 			log.Fatal("Error when listing sellers $s", err)
 		}
 
-		fmt.Println(sellers)
 		return c.JSON(&fiber.Map{
 			"status": true,
 			"data":   sellers,

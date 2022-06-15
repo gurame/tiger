@@ -26,7 +26,7 @@ import (
 type Seller struct {
 	Sellerid        string      `boil:"sellerid" json:"sellerid" toml:"sellerid" yaml:"sellerid"`
 	Taxid           string      `boil:"taxid" json:"taxid" toml:"taxid" yaml:"taxid"`
-	Name            null.String `boil:"name" json:"name,omitempty" toml:"name" yaml:"name,omitempty"`
+	Name            string      `boil:"name" json:"name" toml:"name" yaml:"name"`
 	Created         time.Time   `boil:"created" json:"created" toml:"created" yaml:"created"`
 	Createdby       string      `boil:"createdby" json:"createdby" toml:"createdby" yaml:"createdby"`
 	Lastmodified    null.Time   `boil:"lastmodified" json:"lastmodified,omitempty" toml:"lastmodified" yaml:"lastmodified,omitempty"`
@@ -102,30 +102,6 @@ func (w whereHelperstring) NIN(slice []string) qm.QueryMod {
 	return qm.WhereNotIn(fmt.Sprintf("%s NOT IN ?", w.field), values...)
 }
 
-type whereHelpernull_String struct{ field string }
-
-func (w whereHelpernull_String) EQ(x null.String) qm.QueryMod {
-	return qmhelper.WhereNullEQ(w.field, false, x)
-}
-func (w whereHelpernull_String) NEQ(x null.String) qm.QueryMod {
-	return qmhelper.WhereNullEQ(w.field, true, x)
-}
-func (w whereHelpernull_String) LT(x null.String) qm.QueryMod {
-	return qmhelper.Where(w.field, qmhelper.LT, x)
-}
-func (w whereHelpernull_String) LTE(x null.String) qm.QueryMod {
-	return qmhelper.Where(w.field, qmhelper.LTE, x)
-}
-func (w whereHelpernull_String) GT(x null.String) qm.QueryMod {
-	return qmhelper.Where(w.field, qmhelper.GT, x)
-}
-func (w whereHelpernull_String) GTE(x null.String) qm.QueryMod {
-	return qmhelper.Where(w.field, qmhelper.GTE, x)
-}
-
-func (w whereHelpernull_String) IsNull() qm.QueryMod    { return qmhelper.WhereIsNull(w.field) }
-func (w whereHelpernull_String) IsNotNull() qm.QueryMod { return qmhelper.WhereIsNotNull(w.field) }
-
 type whereHelpertime_Time struct{ field string }
 
 func (w whereHelpertime_Time) EQ(x time.Time) qm.QueryMod {
@@ -171,6 +147,30 @@ func (w whereHelpernull_Time) GTE(x null.Time) qm.QueryMod {
 func (w whereHelpernull_Time) IsNull() qm.QueryMod    { return qmhelper.WhereIsNull(w.field) }
 func (w whereHelpernull_Time) IsNotNull() qm.QueryMod { return qmhelper.WhereIsNotNull(w.field) }
 
+type whereHelpernull_String struct{ field string }
+
+func (w whereHelpernull_String) EQ(x null.String) qm.QueryMod {
+	return qmhelper.WhereNullEQ(w.field, false, x)
+}
+func (w whereHelpernull_String) NEQ(x null.String) qm.QueryMod {
+	return qmhelper.WhereNullEQ(w.field, true, x)
+}
+func (w whereHelpernull_String) LT(x null.String) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.LT, x)
+}
+func (w whereHelpernull_String) LTE(x null.String) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.LTE, x)
+}
+func (w whereHelpernull_String) GT(x null.String) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.GT, x)
+}
+func (w whereHelpernull_String) GTE(x null.String) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.GTE, x)
+}
+
+func (w whereHelpernull_String) IsNull() qm.QueryMod    { return qmhelper.WhereIsNull(w.field) }
+func (w whereHelpernull_String) IsNotNull() qm.QueryMod { return qmhelper.WhereIsNotNull(w.field) }
+
 type whereHelperint struct{ field string }
 
 func (w whereHelperint) EQ(x int) qm.QueryMod  { return qmhelper.Where(w.field, qmhelper.EQ, x) }
@@ -197,7 +197,7 @@ func (w whereHelperint) NIN(slice []int) qm.QueryMod {
 var SellerWhere = struct {
 	Sellerid        whereHelperstring
 	Taxid           whereHelperstring
-	Name            whereHelpernull_String
+	Name            whereHelperstring
 	Created         whereHelpertime_Time
 	Createdby       whereHelperstring
 	Lastmodified    whereHelpernull_Time
@@ -206,7 +206,7 @@ var SellerWhere = struct {
 }{
 	Sellerid:        whereHelperstring{field: "\"seller\".\"sellerid\""},
 	Taxid:           whereHelperstring{field: "\"seller\".\"taxid\""},
-	Name:            whereHelpernull_String{field: "\"seller\".\"name\""},
+	Name:            whereHelperstring{field: "\"seller\".\"name\""},
 	Created:         whereHelpertime_Time{field: "\"seller\".\"created\""},
 	Createdby:       whereHelperstring{field: "\"seller\".\"createdby\""},
 	Lastmodified:    whereHelpernull_Time{field: "\"seller\".\"lastmodified\""},
@@ -232,8 +232,8 @@ type sellerL struct{}
 
 var (
 	sellerAllColumns            = []string{"sellerid", "taxid", "name", "created", "createdby", "lastmodified", "lastmodifiedby", "baseentitystate"}
-	sellerColumnsWithoutDefault = []string{"sellerid", "taxid", "created", "createdby", "baseentitystate"}
-	sellerColumnsWithDefault    = []string{"name", "lastmodified", "lastmodifiedby"}
+	sellerColumnsWithoutDefault = []string{"sellerid", "taxid", "name", "created", "createdby", "baseentitystate"}
+	sellerColumnsWithDefault    = []string{"lastmodified", "lastmodifiedby"}
 	sellerPrimaryKeyColumns     = []string{"sellerid"}
 	sellerGeneratedColumns      = []string{}
 )
