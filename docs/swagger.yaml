@@ -1,0 +1,50 @@
+definitions:
+  handlers.ErrorResponse:
+    properties:
+      failedField:
+        type: string
+      tag:
+        type: string
+      value:
+        type: string
+    type: object
+  handlers.SellerCreateReq:
+    properties:
+      name:
+        type: string
+      taxId:
+        type: string
+    required:
+    - name
+    - taxId
+    type: object
+info:
+  contact: {}
+paths:
+  /sellers:
+    post:
+      consumes:
+      - application/json
+      description: Register seller
+      parameters:
+      - description: Register seller
+        in: body
+        name: seller
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.SellerCreateReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.SellerCreateReq'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      summary: Register a new seller
+      tags:
+      - sellers
+swagger: "2.0"

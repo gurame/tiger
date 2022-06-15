@@ -3,6 +3,7 @@ package api
 import (
 	"log"
 
+	swagger "github.com/arsmn/fiber-swagger/v2"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
@@ -27,6 +28,8 @@ func Run() {
 		return c.Send([]byte("Welcome tiger api!"))
 	})
 	routes.ConfigureSeller(app)
+
+	app.Get("/docs/*", swagger.HandlerDefault)
 
 	log.Fatal(app.Listen(":3000"))
 }

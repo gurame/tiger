@@ -40,6 +40,16 @@ func ValidateStruct(seller SellerCreateReq) []*ErrorResponse {
 	return errors
 }
 
+// Add registers a new seller
+// @Summary Register a new seller
+// @Description Register seller
+// @Tags sellers
+// @Accept json
+// @Produce json
+// @Param seller body handlers.SellerCreateReq true "Register seller"
+// @Success 200 {object} handlers.SellerCreateReq
+// @Failure 400 {object} ErrorResponse{}
+// @Router /sellers [post]
 func Add() fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		r := new(SellerCreateReq)
@@ -58,6 +68,6 @@ func Add() fiber.Handler {
 
 		s.InsertG(context.Background(), boil.Infer())
 
-		return c.Status(fiber.StatusCreated).JSON(errors)
+		return c.Status(fiber.StatusCreated).JSON(r)
 	}
 }
