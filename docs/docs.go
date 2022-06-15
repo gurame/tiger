@@ -36,7 +36,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/handlers.SellerCreateReq"
+                            "$ref": "#/definitions/models.SellerCreateReq"
                         }
                     }
                 ],
@@ -44,13 +44,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handlers.SellerCreateReq"
+                            "$ref": "#/definitions/models.SellerCreateRes"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ErrorResponse"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -58,7 +58,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "handlers.ErrorResponse": {
+        "models.ErrorResponse": {
             "type": "object",
             "properties": {
                 "failedField": {
@@ -72,7 +72,7 @@ const docTemplate = `{
                 }
             }
         },
-        "handlers.SellerCreateReq": {
+        "models.SellerCreateReq": {
             "type": "object",
             "required": [
                 "name",
@@ -80,6 +80,20 @@ const docTemplate = `{
             ],
             "properties": {
                 "name": {
+                    "type": "string"
+                },
+                "taxId": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SellerCreateRes": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "sellerId": {
                     "type": "string"
                 },
                 "taxId": {

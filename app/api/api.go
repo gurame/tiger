@@ -8,14 +8,19 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gurame/tiger/app/api/routes"
+	"github.com/gurame/tiger/app/core/services"
 	"github.com/gurame/tiger/app/infrastructure/db"
+	"github.com/gurame/tiger/app/infrastructure/db/repositories"
 	_ "github.com/lib/pq"
 )
 
 func Run() {
 
 	//db
-	db.Connect()
+	sqlDb := db.Connection()
+
+	sellerRepository := repositories.NewSellerRepository(sqlDb)
+	sellerService := services.NewSellerService(sellerRepository)
 
 	//web
 	app := fiber.New()
@@ -27,7 +32,7 @@ func Run() {
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.Send([]byte("Welcome tiger api!"))
 	})
-	routes.ConfigureSeller(app)
+	routes.ConfigureSeller(app, sellerService)
 
 	app.Get("/docs/*", swagger.HandlerDefault)
 

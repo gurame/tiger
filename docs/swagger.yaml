@@ -1,5 +1,5 @@
 definitions:
-  handlers.ErrorResponse:
+  models.ErrorResponse:
     properties:
       failedField:
         type: string
@@ -8,7 +8,7 @@ definitions:
       value:
         type: string
     type: object
-  handlers.SellerCreateReq:
+  models.SellerCreateReq:
     properties:
       name:
         type: string
@@ -17,6 +17,15 @@ definitions:
     required:
     - name
     - taxId
+    type: object
+  models.SellerCreateRes:
+    properties:
+      name:
+        type: string
+      sellerId:
+        type: string
+      taxId:
+        type: string
     type: object
 info:
   contact: {}
@@ -32,18 +41,18 @@ paths:
         name: seller
         required: true
         schema:
-          $ref: '#/definitions/handlers.SellerCreateReq'
+          $ref: '#/definitions/models.SellerCreateReq'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handlers.SellerCreateReq'
+            $ref: '#/definitions/models.SellerCreateRes'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/handlers.ErrorResponse'
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Register a new seller
       tags:
       - sellers

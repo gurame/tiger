@@ -8,12 +8,14 @@ import (
 	"github.com/volatiletech/sqlboiler/v4/boil"
 )
 
-func Connect() {
-	database, err := sql.Open("postgres", "dbname=TigerDb user=admin password=admin sslmode=disable")
+func Connection() *sql.DB {
+	db, err := sql.Open("postgres", "dbname=TigerDb user=admin password=admin sslmode=disable")
 	if err != nil {
 		log.Fatal("Database Connection Error $s", err)
 	}
-	boil.SetDB(database)
 
+	boil.SetDB(db)
 	audit.ConfigSeller()
+
+	return db
 }

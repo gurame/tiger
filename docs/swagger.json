@@ -24,7 +24,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/handlers.SellerCreateReq"
+                            "$ref": "#/definitions/models.SellerCreateReq"
                         }
                     }
                 ],
@@ -32,13 +32,13 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handlers.SellerCreateReq"
+                            "$ref": "#/definitions/models.SellerCreateRes"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ErrorResponse"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -46,7 +46,7 @@
         }
     },
     "definitions": {
-        "handlers.ErrorResponse": {
+        "models.ErrorResponse": {
             "type": "object",
             "properties": {
                 "failedField": {
@@ -60,7 +60,7 @@
                 }
             }
         },
-        "handlers.SellerCreateReq": {
+        "models.SellerCreateReq": {
             "type": "object",
             "required": [
                 "name",
@@ -68,6 +68,20 @@
             ],
             "properties": {
                 "name": {
+                    "type": "string"
+                },
+                "taxId": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SellerCreateRes": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "sellerId": {
                     "type": "string"
                 },
                 "taxId": {
